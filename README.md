@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # miprimervuejscli
 
 ## Project setup
@@ -22,3 +23,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# desafioOpcionalMiprimerVueJsCli
+>>>>>>> d3d240f7f62bf6586f5bed9f86646212ccba6eda
