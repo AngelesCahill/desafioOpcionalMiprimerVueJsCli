@@ -31,34 +31,38 @@
    
   <div class="container">
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <form @submit="nuevoUsuario">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 bg-secondary text-white m-5 p-5 text-center mx-auto">
+          <form @submit.prevent="nuevoUsuario">
               <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" v-model="datosUsuario.nombre">
+                <input type="text" class="form-control" v-model="usuario.nombre">
               </div>
 
               <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" v-model="datosUsuario.apellido">
+                <input type="text" class="form-control" v-model="usuario.apellido">
               </div>
 
               <div class="form-group">
                 <label for="rut">Rut</label>
-                <input type="text" class="form-control" v-model="datosUsuario.rut">
+                <input type="text" class="form-control" v-model="usuario.rut">
               </div>
 
               <div class="form-group">
                 <label for="fechanacimiento">fechanacimiento</label>
-                <input type="text" class="form-control" v-model="datosUsuario.fechanacimiento">
+                <input type="text" class="form-control" v-model="usuario.fechanacimiento">
               </div>
 
               <div class="form-group">
                 <label for="edad">edad</label>
-                <input type="number" class="form-control" v-model="datosUsuario.edad">
+                <input type="number" class="form-control" v-model="usuario.edad">
+              </div>
+              <div class="form-group">
+                <label for="id">{{usuario.id}}</label>
+                
               </div>
               
-              <button type="submit" class="btn btn-primary">Registrar</button>
+              <button type="submit" class="btn btn-primary bg-dark text-white">Registrar</button>
             </form>
       </div>
     </div>
@@ -71,15 +75,16 @@ export default {
   name: 'Main',
   data(){
     return {
-      datosUsuario: {
-        id: '',
-        nombre: '',
-        apellido: '',
-        rut: '',
-        fechanacimiento: '',
-        edad:''
-      },
-      
+        
+        usuario: {
+          id: '',
+          nombre: '',
+          apellido: '',
+          rut: '',
+          fechanacimiento: '',
+          edad:''
+        },
+
       usuarios: [
         {
           id: '1',
@@ -104,18 +109,50 @@ export default {
           rut: '5.890.123-1',
           fechanacimiento: '10-09-2006',
           edad:'14'
+        },
+        {
+          id: '4',
+          nombre: 'Fatima',
+          apellido: 'Renner',
+          rut: '12.098.345-0',
+          fechanacimiento: '10-11-2000',
+          edad:'20'
+        },
+        {
+          id: '5',
+          nombre:'Moriah',
+          apellido: 'Schimmel',
+          rut: '10.900.321-k',
+          fechanacimiento: '10-01-1900',
+          edad:'120'
+        },
+        {
+          id: '6',
+          nombre: 'Elsie',
+          apellido: 'Runolfsson',
+          rut: '5.890.123-1',
+          fechanacimiento: '10-09-1996',
+          edad:'24'
         }
       ]
     }
   },
   methods: {
     nuevoUsuario(){
-      this.datosUsuario
-    }
+      if (this.usuario) {
+        this.usuarios.push(this.usuario);
+        this.usuario = '';
+        
+        
+      }else {
+        alert('Debes ingresar todos los datos solicitados')
+      }
+    },
+    eliminarNombre(index){
+            this.usuarios.splice(index,1);
+        }
   },
-  beforeMount: {
-    
-  }
+  
   
 }
 
